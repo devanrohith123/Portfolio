@@ -95,6 +95,61 @@
 
   .nav-links a:hover { color: var(--cyan); }
 
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 200;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+
+    .nav-links {
+      display: none;
+      position: fixed;
+      top: 61px;
+      left: 0;
+      right: 0;
+      background: rgba(8,12,16,0.97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      gap: 0;
+      padding: 1rem 0;
+    }
+
+    .nav-links.open { display: flex; }
+
+    .nav-links li { width: 100%; }
+
+    .nav-links a {
+      display: block;
+      padding: 1rem 5vw;
+      font-size: 0.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+  }
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -930,7 +985,6 @@
     .exp-card { grid-template-columns: 1fr; }
     .exp-meta { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 1.5rem; }
     .projects-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
     .edu-card { flex-direction: column; }
     .edu-gpa { text-align: left; }
     .about-grid { grid-template-columns: 1fr; }
@@ -942,7 +996,7 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">MDR<span>.</span></a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -950,6 +1004,9 @@
     <li><a href="#education">Education</a></li>
     <li><a href="#contactme">Contact</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -975,9 +1032,9 @@
     <div class="hero-cta">
       <a href="#contact" class="btn-primary">Get in touch</a>
       <a href="#experience" class="btn-ghost">View experience</a>
-      <a href="Devan_Rohith_3Years_HCLTech.pdf"
+      <a href="DevanRohith_3Yrs_DotNetDeveloper.pdf"
    class="btn-ghost"
-   download="Manda_Devan_Rohith_Resume.pdf"
+   download="DevanRohith_3Yrs_DotNetDeveloper.pdf"
    target="_blank"
    rel="noopener">
    Download Resume
@@ -1003,9 +1060,9 @@
       <div class="stat-label">Test coverage</div>
     </div>
     <div class="contact-strip">
-      <a class="contact-item" href="tel:8143145043">
+      <a class="contact-item" href="tel:+918143145043">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"/></svg>
-        8143145043
+        +91 8143145043
       </a>
       <a class="contact-item" href="mailto:devanrohith123@gmail.com">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -1031,16 +1088,20 @@
     <div class="section-line"></div>
   </div>
 
-  <h2 class="fade-in">Engineering Mindset</h2>
+  <h2 class="fade-in">About Me</h2>
 
   <div class="about-grid fade-in">
     <div>
       <p class="about-text">
-        I'm a .NET Full Stack Developer focused on building scalable enterprise applications with clean architecture, performance optimization, and maintainable backend systems.
+        I'm a .NET Full Stack Developer with 3 years of experience across product, consulting, and enterprise environments — currently at HCLTech working on distributed systems for global clients.
       </p>
 
       <p class="about-text">
-        I enjoy designing APIs, optimizing SQL performance, improving system reliability, and collaborating across distributed global teams.
+        I specialize in MVC, ASP.NET Core, C#, and SQL Server, and I care deeply about writing backend systems that are fast, secure, and maintainable. From cutting query times by 40% at HCLTech to mentoring junior developers at Infionic, I've always been drawn to the details that make software reliable at scale.
+      </p>
+
+      <p class="about-text">
+        Outside of work, I'm constantly exploring clean architecture patterns and improving how I think about system design.
       </p>
     </div>
 
@@ -1048,11 +1109,11 @@
       <div class="principles-title">Engineering Principles</div>
 
       <ul class="principles-list">
-        <li>Performance over unnecessary complexity</li>
-        <li>Clean architecture and maintainable code</li>
-        <li>Security-first backend design</li>
-        <li>Scalable APIs and optimized SQL systems</li>
-        <li>Reliable delivery in distributed teams</li>
+        <li>I profile before I optimize — data first, assumptions never</li>
+        <li>Every API I build should be readable by the next developer</li>
+        <li>Security isn't a feature — it's baked into the design from day one</li>
+        <li>SQL that can't be explained in plain English needs to be rewritten</li>
+        <li>Remote teams win with over-communication, not under</li>
       </ul>
     </div>
   </div>
@@ -1189,7 +1250,7 @@
 
     <div class="exp-card fade-in">
       <div class="exp-meta">
-        <div class="exp-period">May 2023 – Jan 2024</div>
+        <div class="exp-period">May 2023 – Apr 2024</div>
         <div class="exp-company">SmartGig Technologies</div>
         <div class="exp-location">Hyderabad, Telangana</div>
       </div>
@@ -1230,10 +1291,6 @@
       <p class="project-desc">
         Full-stack ERP system with responsive UI, C# business logic, and SQL Server integration via Entity Framework Core. Applied SOLID principles, Repository pattern, and CQRS for a clean, scalable architecture. Implemented JWT-based authentication and RBAC. CI/CD via Azure DevOps; deployed to Azure App Services with Azure SQL Database.
       </p>
-      <div class="project-links">
-        <a href="#">Case Study</a>
-        <a href="#">GitHub</a>
-      </div>
     </div>
     <div class="project-card">
       <div class="project-num">02</div>
@@ -1250,8 +1307,11 @@
       </p>
     </div>
     <div class="project-card erp-card">
-      <div class="project-num">03</div>
+      <div class="project-num" style="color: var(--cyan-mid);">03</div>
       <div class="project-title">ERP Platform</div>
+      <p class="project-desc" style="margin-bottom: 1.5rem;">
+        Two enterprise ERP products built and maintained across distributed teams, each targeting different industry verticals with clean .NET architecture and Azure infrastructure.
+      </p>
       <div class="erp-sub-grid">
         <div class="erp-sub">
           <div class="erp-sub-header">
@@ -1347,21 +1407,34 @@
     </a>
 
     <!-- Phone -->
-    <a class="footer-icon-link" href="tel:8143145043">
+    <a class="footer-icon-link" href="tel:+918143145043">
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"/></svg>
       <span class="footer-tooltip">+91 8143145043</span>
     </a>
 
-    <!-- GitHub placeholder -->
-    <a class="footer-icon-link" href="https://github.com/YOUR_USERNAME" target="_blank" rel="noopener">
-      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-      <span class="footer-tooltip">GitHub</span>
-    </a>
+
 
   </div>
 </footer>
 
 <script>
+  // Hamburger menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+
+  // Close menu when a nav link is clicked
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+
   // Intersection Observer for fade-in animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -1381,7 +1454,7 @@
 
   // Smooth active nav highlight
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+  const navLinkItems = document.querySelectorAll('.nav-links a');
 
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
@@ -1390,7 +1463,7 @@
       const sectionHeight = section.offsetHeight;
       const sectionId = section.getAttribute('id');
       if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        navLinks.forEach(link => {
+        navLinkItems.forEach(link => {
           link.style.color = link.getAttribute('href') === `#${sectionId}` ? 'var(--cyan)' : '';
         });
       }
